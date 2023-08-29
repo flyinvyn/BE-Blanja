@@ -83,7 +83,6 @@ let productController = {
     }
     const {
       id_category,
-      id_seller,
       name_product,
       price_product,
       description_product,
@@ -93,7 +92,6 @@ let productController = {
     const data = {
       id_product,
       id_category,
-      id_seller,
       name_product,
       price_product,
       description_product,
@@ -117,6 +115,7 @@ let productController = {
       const {
         id_category,
         id_seller,
+        create_at,
         name_product,
         price_product,
         description_product,
@@ -130,6 +129,7 @@ let productController = {
         id_product,
         id_category,
         id_seller,
+        create_at,
         name_product,
         price_product,
         description_product,

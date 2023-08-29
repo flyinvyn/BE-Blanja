@@ -12,6 +12,7 @@ CREATE TABLE
         description_product TEXT,
         stock_product INT,
         image_product VARCHAR(255),
+        create at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         id_category VARCHAR,
         id_seller VARCHAR
     );
@@ -53,6 +54,7 @@ CREATE TABLE
     order_list (
         id_order VARCHAR PRIMARY KEY,
         quantity_order INT,
+        date_order TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         id_product VARCHAR,
         id_user VARCHAR(255)
     );
@@ -61,3 +63,8 @@ SELECT product.*,category.name_category,seller.name_seller,seller.store_seller
 FROM product
 JOIN category ON product.id_category = category.id_category
 JOIN seller ON product.id_seller = seller.id_seller;
+
+SELECT order_list.*,product.*,users.id_user
+FROM order_list
+JOIN product ON order_list.id_product = product.id_product
+JOIN users ON order_list.id_user = users.id_user;

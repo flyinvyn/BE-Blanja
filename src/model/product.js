@@ -27,8 +27,9 @@ const insertProduct = (data) => {
     stock_product,
     image_product,
   } = data;
-  return Pool.query(`INSERT INTO product(id_product, id_category, id_seller, name_product, price_product, description_product, stock_product, image_product) 
-    VALUES ('${id_product}', '${id_category}', '${id_seller}', '${name_product}', ${price_product}, '${description_product}', ${stock_product}, '${image_product}')`);
+  const date = new Date().toISOString()
+  return Pool.query(`INSERT INTO product(id_product, id_category, id_seller, create_at, name_product, price_product, description_product, stock_product, image_product) 
+    VALUES ('${id_product}', '${id_category}', '${id_seller}', '${date}', '${name_product}', ${price_product}, '${description_product}', ${stock_product}, '${image_product}')`);
 };
 
 const updateProduct = (data) => {

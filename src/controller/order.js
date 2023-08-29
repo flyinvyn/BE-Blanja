@@ -8,6 +8,7 @@ let {
   findId,
 } = require("../model/order");
 const commonHelper = require("../helper/common");
+const { v4: uuidv4 } = require("uuid");
 
 let orderController = {
   getAllOrder: async (req, res) => {
@@ -41,8 +42,8 @@ let orderController = {
     }
   },
   getDetailOrder: async (req, res) => {
-    const id_user = String(req.params.id);
-    selectOrder(id_user)
+    const id_order = String(req.params.id);
+    selectOrder(id_order)
       .then((result) => {
         commonHelper.response(
           res,
@@ -55,10 +56,7 @@ let orderController = {
   },
   createOrder: async (req, res) => {
     const { id_product, quantity_order, id_user } = req.body;
-    const {
-      rows: [count],
-    } = await countData();
-    const id_order = Number(count.count) + 1;
+    const id_order = uuidv4();
     const data = {
       id_order,
       id_product,
@@ -73,7 +71,7 @@ let orderController = {
   },
   updateOrder: async (req, res) => {
     try {
-      const id_order = Number(req.params.id);
+      const id_order = String(req.params.id);
       const { id_product, quantity_order, date_order } = req.body;
       const { rowCount } = await findId(id_order);
       if (!rowCount) {
@@ -96,7 +94,7 @@ let orderController = {
   },
   deleteOrder: async (req, res) => {
     try {
-      const id_order = Number(req.params.id);
+      const id_order = String(req.params.id);
       const { rowCount } = await findId(id_order);
       if (!rowCount) {
         res.json({ message: "ID Not Found" });
