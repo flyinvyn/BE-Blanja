@@ -56,7 +56,7 @@ let orderController = {
   },
   createOrder: async (req, res) => {
     const { id_product, quantity_order, id_user } = req.body;
-    const id_order = uuidv4()
+    const id_order = uuidv4();
     const data = {
       id_order,
       id_product,
