@@ -19,7 +19,7 @@ CREATE TABLE
 
 CREATE TABLE
     users (
-        id_user VARCHAR(255),
+        id_user VARCHAR(255) PRIMARY KEY,
         email_user VARCHAR(255),
         password_user VARCHAR(255),
         fullname_user VARCHAR(255),
@@ -41,13 +41,14 @@ CREATE TABLE
 
 CREATE TABLE
     seller (
-        id_seller VARCHAR(255),
+        id_seller VARCHAR(255) PRIMARY KEY,
         email_seller VARCHAR(255),
         phone_seller VARCHAR(255),
         name_seller VARCHAR(255),
         password_seller VARCHAR(255),
         description_seller TEXT,
-        store_seller VARCHAR(255)
+        store_seller VARCHAR(255),
+        role_seller VARCHAR(255)
     );
 
 CREATE TABLE
@@ -56,7 +57,9 @@ CREATE TABLE
         quantity_order INT,
         date_order TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         id_product VARCHAR,
-        id_user VARCHAR(255)
+        id_user VARCHAR,
+        Foreign Key (id_product) REFERENCES product(id_product)
+        Foreign Key (id_user) REFERENCES users(id_user)
     );
 
 SELECT product.*,category.name_category,seller.name_seller,seller.store_seller
@@ -64,7 +67,6 @@ FROM product
 JOIN category ON product.id_category = category.id_category
 JOIN seller ON product.id_seller = seller.id_seller;
 
-SELECT order_list.*,product.*,users.id_user
+SELECT order_list.*,product.*
 FROM order_list
-JOIN product ON order_list.id_product = product.id_product
-JOIN users ON order_list.id_user = users.id_user;
+JOIN product ON order_list.id_product = product.id_product;

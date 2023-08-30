@@ -10,7 +10,7 @@ let {
 const commonHelper = require("../helper/common");
 const { v4: uuidv4 } = require("uuid");
 
-let orderController = {
+const orderController = {
   getAllOrder: async (req, res) => {
     try {
       const page = Number(req.query.page) || 1;
@@ -42,8 +42,8 @@ let orderController = {
     }
   },
   getDetailOrder: async (req, res) => {
-    const id_order = String(req.params.id);
-    selectOrder(id_order)
+    const id_user = String(req.params.id);
+    selectOrder(id_user)
       .then((result) => {
         commonHelper.response(
           res,
