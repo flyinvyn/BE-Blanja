@@ -61,7 +61,7 @@ const categoryController = {
   createCategory: async (req, res) => {
     const { name_category } = req.body;
 
-    const id_category = uuidv4();
+    const id_category = uuidv4()
     const data = {
       id_category,
       name_category,
