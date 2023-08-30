@@ -71,6 +71,7 @@ let sellerController = {
       store_seller,
       description_seller,
       phone_seller,
+      role_seller
     } = req.body;
     const { rowCount } = await findEmail(email_seller);
     if (rowCount) {
@@ -87,6 +88,7 @@ let sellerController = {
       passwordHash_seller,
       description_seller,
       phone_seller,
+      role_seller
     };
     insertSeller(data)
       .then((result) =>
@@ -122,7 +124,7 @@ let sellerController = {
   updateSeller: async (req, res) => {
     try {
       const id_seller = String(req.params.id);
-      const { store_seller, email_seller, phone_seller, description_seller } =
+      const { store_seller, email_seller, phone_seller, description_seller,role_seller } =
         req.body;
       const data = {
         id_seller,
@@ -130,6 +132,7 @@ let sellerController = {
         email_seller,
         phone_seller,
         description_seller,
+        role_seller
       };
       updateSeller(data)
         .then((result) =>
