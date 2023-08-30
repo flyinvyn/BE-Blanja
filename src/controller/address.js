@@ -8,12 +8,13 @@ let {
   findId,
 } = require("../model/address");
 const commonHelper = require("../helper/common");
+const { v4: uuidv4 } = require("uuid");
 
 let addressController = {
   getAllAddress: async (req, res) => {
     try {
       const page = Number(req.query.page) || 1;
-      const limit = Number(req.query.limit) || 10;
+      const limit = Number(req.query.limit) || 5;
       const offset = (page - 1) * limit;
       const sortby = req.query.sortby || "id_address";
       const sort = req.query.sort || "ASC";
@@ -41,8 +42,8 @@ let addressController = {
     }
   },
   getDetailAddress: async (req, res) => {
-    const id_user = String(req.params.id);
-    selectAddress(id_user)
+    const id_address = String(req.params.id);
+    selectAddress(id_address)
       .then((result) => {
         commonHelper.response(
           res,
@@ -63,10 +64,7 @@ let addressController = {
       place_address,
       id_user,
     } = req.body;
-    const {
-      rows: [count],
-    } = await countData();
-    const id_address = Number(count.count) + 1;
+    const id_address = uuidv4();
     const data = {
       id_address,
       name_address,
@@ -79,13 +77,13 @@ let addressController = {
     };
     insertAddress(data)
       .then((result) =>
-        commonHelper.response(res, result.rows, 201, "Create Order Success")
+        commonHelper.response(res, result.rows, 201, "Create Adress Success")
       )
       .catch((err) => res.send(err));
   },
   updateAddress: async (req, res) => {
     try {
-      const id_address = Number(req.params.id);
+      const id_address = String(req.params.id);
       const {
         name_address,
         street_address,
@@ -95,12 +93,6 @@ let addressController = {
         place_address,
       } = req.body;
       const { rowCount } = await findId(id_address);
-      //   const role_user = req.payload.role_user;
-      //   try {
-      //     if (role_user != "seller") throw "You're Cannot Access this feature";
-      //   } catch (error) {
-      //     return commonHelper.response(res, null, 404, error);
-      //   }
       if (!rowCount) {
         res.json({ message: "ID Not Found" });
       }
@@ -124,14 +116,8 @@ let addressController = {
   },
   deleteAddress: async (req, res) => {
     try {
-      const id_address = Number(req.params.id);
+      const id_address = String(req.params.id);
       const { rowCount } = await findId(id_address);
-      //   const role_user = req.payload.role_user;
-      //   try {
-      //     if (role_user != "seller") throw "You're Cannot Access this feature";
-      //   } catch (error) {
-      //     return commonHelper.response(res, null, 404, error);
-      //   }
       if (!rowCount) {
         res.json({ message: "ID Not Found" });
       }

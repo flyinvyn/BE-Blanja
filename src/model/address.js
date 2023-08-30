@@ -6,8 +6,8 @@ const selectAllAddress = ({ limit, offset, sort, sortby }) => {
   );
 };
 
-const selectAddress = (id_user) => {
-  return Pool.query(`SELECT * FROM address WHERE id_user = '${id_user}'`);
+const selectAddress = (id_address) => {
+  return Pool.query(`SELECT * FROM address WHERE id_address = '${id_address}'`);
 };
 
 const insertAddress = (data) => {
@@ -22,7 +22,7 @@ const insertAddress = (data) => {
     id_user,
   } = data;
   return Pool.query(
-    `INSERT INTO address(id_address,name_address,street_address,phone_address,postal_address,city_address,place_address,id_user) VALUES(${id_address},'${name_address}', '${street_address}', '${phone_address}', '${postal_address}', '${city_address}', '${place_address}','${id_user}')`
+    `INSERT INTO address(id_address,name_address,street_address,phone_address,postal_address,city_address,place_address,id_user) VALUES('${id_address}','${name_address}', '${street_address}', '${phone_address}', '${postal_address}', '${city_address}', '${place_address}','${id_user}')`
   );
 };
 
@@ -37,12 +37,12 @@ const updateAddress = (data) => {
     place_address,
   } = data;
   return Pool.query(
-    `UPDATE address SET name_address = '${name_address}', street_address = '${street_address}', phone_address = '${phone_address}', postal_address = '${postal_address}', city_address = '${city_address}', place_address = '${place_address}' WHERE id_address = ${id_address}`
+    `UPDATE address SET name_address = '${name_address}', street_address = '${street_address}', phone_address = '${phone_address}', postal_address = '${postal_address}', city_address = '${city_address}', place_address = '${place_address}' WHERE id_address = '${id_address}'`
   );
 };
 
 const deleteAddress = (id_address) => {
-  return Pool.query(`DELETE FROM address WHERE id_address = ${id_address}`);
+  return Pool.query(`DELETE FROM address WHERE id_address = '${id_address}'`);
 };
 
 const countData = () => {
@@ -52,7 +52,7 @@ const countData = () => {
 const findId = (id_address) => {
   return new Promise((resolve, reject) =>
     Pool.query(
-      `SELECT id_address FROM address WHERE id_address=${id_address}`,
+      `SELECT id_address FROM address WHERE id_address='${id_address}'`,
       (error, result) => {
         if (!error) {
           resolve(result);
