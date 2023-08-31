@@ -6,8 +6,8 @@ const selectAllAddress = ({ limit, offset, sort, sortby }) => {
   );
 };
 
-const selectAddress = (id_address) => {
-  return Pool.query(`SELECT * FROM address WHERE id_address = '${id_address}'`);
+const selectAddress = (id_user) => {
+  return Pool.query(`SELECT * FROM address WHERE id_user = '${id_user}'`);
 };
 
 const insertAddress = (data) => {

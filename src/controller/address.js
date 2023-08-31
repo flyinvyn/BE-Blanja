@@ -42,8 +42,8 @@ let addressController = {
     }
   },
   getDetailAddress: async (req, res) => {
-    const id_address = String(req.params.id);
-    selectAddress(id_address)
+    const id_user = String(req.params.id);
+    selectAddress(id_user)
       .then((result) => {
         commonHelper.response(
           res,
