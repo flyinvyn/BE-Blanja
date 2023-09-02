@@ -9,10 +9,11 @@ const insertSeller = (data) => {
     passwordHash_seller,
     name_seller,
     description_seller,
+    photo,
     role_seller
   } = data;
-  return Pool.query(`INSERT INTO seller(id_seller, email_seller, password_seller, name_seller, description_seller, store_seller,phone_seller,role_seller) 
-    VALUES ('${id_seller}','${email_seller}','${passwordHash_seller}','${name_seller}','${description_seller}','${store_seller}','${phone_seller}','${role_seller}')`);
+  return Pool.query(`INSERT INTO seller(id_seller, email_seller, password_seller, name_seller, description_seller, store_seller,phone_seller,photo,role_seller) 
+    VALUES ('${id_seller}','${email_seller}','${passwordHash_seller}','${name_seller}','${description_seller}','${store_seller}','${phone_seller}','${photo}','${role_seller}')`);
 };
 
 const updateSeller = (data) => {
@@ -22,10 +23,11 @@ const updateSeller = (data) => {
     email_seller,
     phone_seller,
     description_seller,
+    photo,
     role_seller
   } = data;
   return Pool.query(
-    `UPDATE seller SET store_seller = '${store_seller}', email_seller = '${email_seller}', phone_seller = '${phone_seller}', role_seller = '${role_seller}', description_seller = '${description_seller}'WHERE id_seller = '${id_seller}'`
+    `UPDATE seller SET store_seller = '${store_seller}', email_seller = '${email_seller}', phone_seller = '${phone_seller}', role_seller = '${role_seller}', photo = '${photo}', description_seller = '${description_seller}' WHERE id_seller = '${id_seller}'`
   );
 };
 

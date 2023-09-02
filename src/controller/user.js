@@ -12,6 +12,7 @@ let {
 } = require("../model/user");
 const authHelper = require("../helper/auth");
 const commonHelper = require("../helper/common");
+const cloudinary = require("../middlewares/cloudinary");
 
 const userController = {
   getAllUser: async (req, res) => {
@@ -62,16 +63,22 @@ const userController = {
     try {
       const id_user = String(req.params.id);
       const { fullname_user, email_user, phone_number, role_user } = req.body;
+      let photo = null;
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        photo = result.secure_url;
+      }
       const data = {
         id_user,
         fullname_user,
         email_user,
         phone_number,
+        photo,
         role_user,
       };
       updateUser(data)
         .then((result) =>
-          commonHelper.response(res, result.rows, 200, "Update Product Success")
+          commonHelper.response(res, result.rows, 200, "Update Data user Success")
         )
         .catch((err) => res.send(err));
     } catch (error) {
@@ -87,6 +94,11 @@ const userController = {
     }
     const passwordHash_user = bcrypt.hashSync(password_user);
     const id_user = uuidv4();
+    let photo = null;
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        photo = result.secure_url;
+      }
 
     const data = {
       id_user,
@@ -94,6 +106,7 @@ const userController = {
       passwordHash_user,
       fullname_user,
       phone_number,
+      photo,
       role_user,
     };
     insertUser(data)

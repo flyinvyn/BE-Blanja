@@ -1,10 +1,10 @@
 const Pool = require("../config/db");
 
 const insertUser = (data) => {
-  const { id_user, email_user, passwordHash_user, fullname_user, phone_number, role_user } =
+  const { id_user, email_user, passwordHash_user, fullname_user, phone_number, role_user, photo } =
     data;
-  return Pool.query(`INSERT INTO users(id_user, email_user, password_user, fullname_user, phone_number, role_user)
-    VALUES ('${id_user}','${email_user}','${passwordHash_user}','${fullname_user}', '${phone_number}','${role_user}')`)
+  return Pool.query(`INSERT INTO users(id_user, email_user, password_user, fullname_user, phone_number, role_user)., photo
+    VALUES ('${id_user}','${email_user}','${passwordHash_user}','${fullname_user}', '${phone_number}','${role_user}','${photo}')`)
 };
 
 const selectAllUser = ({ limit, offset, sort, sortby }) => {
@@ -18,9 +18,9 @@ const selectUser = (id_user) => {
 };
 
 const updateUser = (data) => {
-  const { id_user, email_user, role_user, phone_number, fullname_user } = data;
+  const { id_user, email_user, role_user, phone_number, fullname_user,photo } = data;
   return Pool.query(
-    `UPDATE users SET email_user = '${email_user}', role_user = '${role_user}', fullname_user = '${fullname_user}', phone_number = '${phone_number}' WHERE id_user = '${id_user}'`
+    `UPDATE users SET email_user = '${email_user}', role_user = '${role_user}', fullname_user = '${fullname_user}', phone_number = '${phone_number}', photo = '${photo}' WHERE id_user = '${id_user}'`
   );
 };
 

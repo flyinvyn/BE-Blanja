@@ -12,6 +12,7 @@ let {
 } = require("../model/seller");
 const authHelper = require("../helper/auth");
 const commonHelper = require("../helper/common");
+const cloudinary = require("../middlewares/cloudinary");
 
 let sellerController = {
   getAllSeller: async (req, res) => {
@@ -79,6 +80,11 @@ let sellerController = {
     }
     const passwordHash_seller = bcrypt.hashSync(password_seller);
     const id_seller = uuidv4();
+    let photo = null;
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      photo = result.secure_url;
+    }
 
     const data = {
       id_seller,
@@ -88,6 +94,7 @@ let sellerController = {
       passwordHash_seller,
       description_seller,
       phone_seller,
+      photo,
       role_seller
     };
     insertSeller(data)
@@ -124,19 +131,25 @@ let sellerController = {
   updateSeller: async (req, res) => {
     try {
       const id_seller = String(req.params.id);
-      const { store_seller, email_seller, phone_seller, description_seller,role_seller } =
+      const { store_seller, email_seller, phone_seller, description_seller, role_seller } =
         req.body;
+      let photo = null;
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        photo = result.secure_url;
+      }
       const data = {
         id_seller,
         store_seller,
         email_seller,
         phone_seller,
         description_seller,
+        photo,
         role_seller
       };
       updateSeller(data)
         .then((result) =>
-          commonHelper.response(res, result.rows, 200, "Update Product Success")
+          commonHelper.response(res, result.rows, 200, "Update Data Seller Success")
         )
         .catch((err) => res.send(err));
     } catch (error) {
