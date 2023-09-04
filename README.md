@@ -7,7 +7,7 @@
   <p align="center">
     <a href="https://github.com/flyinvyn/be-Blanja"><strong>Explore the docs »</strong></a>
     <br />
-    <a href=https://fe-blanja.vercel.app/">View Demo</a>
+    <a href=https://fe-blanja.vercel.app/>View Demo</a>
     ·
     <a href="https://be-blanja-pi.vercel.app/">Api Demo</a>
   </p>
