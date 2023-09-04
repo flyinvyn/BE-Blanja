@@ -93,7 +93,7 @@ Documentation files are provided in the [docs](./docs) folder
 
 API endpoint list are also available as published postman documentation
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/25981147/2s9Y5bNfdC#5a3334d8-4432-4991-9e5b-d2c402d56a63)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/25981147/2s9Y5eMJrA)
 
 ## Related Project
 
