@@ -3,7 +3,7 @@ const Pool = require("../config/db");
 const insertUser = (data) => {
   const { id_user, email_user, passwordHash_user, fullname_user, phone_number, role_user, photo } =
     data;
-  return Pool.query(`INSERT INTO users(id_user, email_user, password_user, fullname_user, phone_number, role_user)., photo
+  return Pool.query(`INSERT INTO users(id_user, email_user, password_user, fullname_user, phone_number, role_user , photo)
     VALUES ('${id_user}','${email_user}','${passwordHash_user}','${fullname_user}', '${phone_number}','${role_user}','${photo}')`)
 };
 

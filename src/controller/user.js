@@ -87,7 +87,7 @@ const userController = {
   },
 
   registerUser: async (req, res) => {
-    const { fullname_user, email_user, password_user, phone_number, role_user } = req.body;
+    const { fullname_user, email_user, password_user,  role_user } = req.body;
     const { rowCount } = await findEmail(email_user);
     if (rowCount) {
       return res.json({ message: "Email Already Taken" });
@@ -105,7 +105,6 @@ const userController = {
       email_user,
       passwordHash_user,
       fullname_user,
-      phone_number,
       photo,
       role_user,
     };
