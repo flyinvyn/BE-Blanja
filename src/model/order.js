@@ -28,8 +28,8 @@ const updateOrder = (data) => {
   );
 };
 
-const deleteOrder = (id_order) => {
-  return Pool.query(`DELETE FROM order_list WHERE id_order = '${id_order}'`);
+const deleteOrder = (id_user) => {
+  return Pool.query(`DELETE FROM order_list WHERE id_user = '${id_user}'`);
 };
 
 const countData = () => {
