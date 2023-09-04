@@ -20,8 +20,8 @@ let productController = {
       const page = Number(req.query.page) || 1;
       const limit = Number(req.query.limit) || 30;
       const offset = (page - 1) * limit;
-      const sortby = req.query.sortby || "id_product";
-      const sort = req.query.sort || "ASC";
+      const sortby = req.query.sortby || "create_at";
+      const sort = req.query.sort || "DESC";
       const search = req.query.search || "";
       let result = await selectAllProduct({
         limit,
